@@ -16,7 +16,7 @@
 ### 响应式
 
 - [x] 1.[个人简历](https://caochangkui.github.io/myresume/index.html)
-- [x] 2.[爱的纪念](https://caochangkui.github.io/cck2wy-1/index.html)
+- [x] 2.[LoveMemory](https://caochangkui.github.io/cck2wy-1/index.html)
 
 ### 基于Vue.js 2.0
 
