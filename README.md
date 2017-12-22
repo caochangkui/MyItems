@@ -47,3 +47,4 @@
 - [x] 15.[选项卡](https://caochangkui.github.io/some-demo/tabs/index.html)
 - [x] 16.[vue实现百度搜索](https://caochangkui.github.io/some-demo/baidu-research/index.html)
 - [x] 17.[仿天猫飞入购物车效果](https://caochangkui.github.io/add-to-cart/index.html)
+- [x] 18.[面向对象的选项卡（继承实现）](https://caochangkui.github.io/some-demo/tabs-by-objects/)
