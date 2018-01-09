@@ -28,7 +28,7 @@
 
 - [x] 1.[基于React人员信息筛选](https://caochangkui.github.io/A-sample-test-by-React/index.html)
 
-### 其他小型demo
+### 其他demo
 
 - [x] 1.[可旋转六面体](https://caochangkui.github.io/rotate-cube/index.html)
 - [x] 2.[Macbook底部菜单](https://caochangkui.github.io/Apple-menu/index.html)
