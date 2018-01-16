@@ -30,8 +30,8 @@
 
 ### 其他demo
 
-- [x] [jsonp请求豆瓣api](https://caochangkui.github.io/some-demo/pubuliu/index.html)
-- [x] [vue实现百度搜索](https://caochangkui.github.io/some-demo/baidu-research/index.html)
+- [x] [jsonp跨域请求豆瓣api](https://caochangkui.github.io/some-demo/pubuliu/index.html)
+- [x] [vue实现百度跨域搜索](https://caochangkui.github.io/some-demo/baidu-research/index.html)
 - [x] [仿天猫飞入购物车效果](https://caochangkui.github.io/add-to-cart/index.html)
 - [x] [面向对象的选项卡（继承实现）](https://caochangkui.github.io/some-demo/tabs-by-objects/)
 - [x] [可旋转六面体](https://caochangkui.github.io/rotate-cube/index.html)
