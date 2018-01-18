@@ -44,7 +44,6 @@
 - [x] [js实现对象拖拽](https://caochangkui.github.io/some-demo/drag/index.html)
 - [x] [动态编辑并添加样式](https://caochangkui.github.io/some-demo/editing/index.html)
 - [x] [页面漂浮广告](https://caochangkui.github.io/some-demo/floating-ad/index.html)
-- [x] [显示当前时间](https://caochangkui.github.io/timeUpdate/index.html)
 - [x] [模拟淘宝购物放大镜](https://caochangkui.github.io/some-demo/magnifier/index.html)
 - [x] [无缝滚动](https://caochangkui.github.io/wufenggundong/index.html)
 - [x] [向上无缝滚动](https://caochangkui.github.io/some-demo/scroll-up/index.html)
