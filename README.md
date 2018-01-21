@@ -30,6 +30,7 @@
 ### 其他demo
 
 - [x] [jsonp跨域请求豆瓣api](https://caochangkui.github.io/doubai-jsonp/)
+- [x] [rem应用-适配不同尺寸移动端](https://caochangkui.github.io/shop-mobile-by-rem/)
 - [x] [vue实现百度跨域搜索](https://caochangkui.github.io/some-demo/baidu-research/index.html)
 - [x] [仿天猫飞入购物车效果](https://caochangkui.github.io/fly-to-shopcart/index.html)
 - [x] [Vue实现飞入购物车效果](https://caochangkui.github.io/fly-to-shopcart-vue/index.html)
