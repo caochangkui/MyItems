@@ -33,7 +33,7 @@
 - [x] [jsonp跨域请求豆瓣api](https://caochangkui.github.io/doubai-jsonp/)
 - [x] [vue实现百度跨域搜索](https://caochangkui.github.io/some-demo/baidu-research/index.html)
 - [x] [仿天猫飞入购物车效果](https://caochangkui.github.io/fly-to-shopcart/index.html)
-- [x] [面向对象的选项卡（继承实现）](https://caochangkui.github.io/some-demo/tabs-by-objects/)
+- [x] [面向对象的选项卡（继承实现）](https://caochangkui.github.io/some-demo/tabs-by-object/)
 - [x] [CSS3 实现可旋转六面体](https://caochangkui.github.io/rotate-cube/index.html)
 - [x] [Macbook底部菜单](https://caochangkui.github.io/Apple-menu/index.html)
 - [x] [可随意拖动的照片墙](https://caochangkui.github.io/Photo_wall/index.html)
