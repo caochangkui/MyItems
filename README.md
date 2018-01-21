@@ -3,10 +3,9 @@
 ### PC端
 
 - [x] 1.[企业官网静态页面-1](http://caochangkui.github.io/firstjob/index.html)
-- [x] 2.[企业官网静态页面-2](https://caochangkui.github.io/sssrifromcck/sssri--new.html)
-- [x] 3.[小型便笺（记事本）](https://caochangkui.github.io/netbook/public/html/index.html)
-- [x] 4.[祖玛小游戏](https://caochangkui.github.io/game_zuma/index.html)
-- [x] 5.[简易五子棋小游戏](https://caochangkui.github.io/wuziqi/index.html)
+- [x] 2.[小型便笺（记事本）](https://caochangkui.github.io/netbook/public/html/index.html)
+- [x] 3.[祖玛小游戏](https://caochangkui.github.io/game_zuma/index.html)
+- [x] 3.[简易五子棋小游戏](https://caochangkui.github.io/wuziqi/index.html)
 
 ### 移动端
 
