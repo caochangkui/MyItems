@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>纯js五子棋 by cck</title>
+		    <style type="text/css">
+			
+			.restart{
+				position: absolute;
+				top: 5px;
+				left: 60px;
+			}
+			.restart:hover{
+				cursor: pointer;
+			}
+			.restart>span{
+				display: inline-block;
+				padding: 10px 20px;
+				color: #fff;
+				background-color: #45c01a;
+				border-radius: 5px;
+			}
+		</style>
+		
+	</head>
+	<body onload="init();" style="margin: 0;">
+		<canvas id="can" width="600" height="600" style="margin: 50px; background: url(http://sandbox.runjs.cn/uploads/rs/319/uun8utwd/bak.jpg);" onclick="play(event);"><h2 style="margin: 30px;color: red;">打开失败，您的浏览器不支持此程序，请更换浏览器！</h2></canvas>
+		<div id='restart' class="restart">
+            <span>重新开始</span>
+        </div>
+	</body>
+	<script type="text/javascript">
+			document.getElementById("restart").onclick = function(){
+			window.location.reload();
+			}
+				
+			//定义存放棋子的数组,这里先初始化一个15*15的二维数组，每个元素存放的初始值都是0
+			var maps = new Array(15);
+			for(var i=0;i<15;i++){
+				maps[i]=new Array(15);
+				for(var j=0;j<15;j++){
+					maps[i][j]=0;
+				}
+			}
+			
+			//初始化黑白棋子
+			var black=new Image();
+			var white=new Image();
+			black.src="http://sandbox.runjs.cn/uploads/rs/319/uun8utwd/black.png";  //黑子
+			white.src="http://sandbox.runjs.cn/uploads/rs/319/uun8utwd/white.png";   //白子
+			
+			var can;
+			var ctx;
+			
+			var isBlack = true;
+			var t;
+			
+			//画出棋盘方格
+			function init(){
+				can = document.getElementById("can");
+				ctx = can.getContext("2d");
+				
+				ctx.strokeStyle="#666";  //strokeStyle是设置图形轮廓（边框）的颜色
+				for(var i=0;i<15;i++){
+					for(var j=0;j<15;j++){
+						ctx.strokeRect(j*40,i*40,40,40);
+					}
+				}
+			}
+			
+			//点击某一处，就会下一棋子
+			function play(e){
+				var x=e.pageX-40;  //点击处的x坐标
+				var y=e.pageY-40;  //点击处的y坐标
+				
+				var col;
+				var row;
+				if(x<20&&y<20){
+					col = 0;
+					row = 0;
+				}else if(x<20&&y>=20){
+					col = 0;
+					row = parseInt((y-20)/40)+1;
+				}else if(y<20&&x>=20){
+					col = parseInt((x-20)/40)+1;
+					row = 0;
+				}else{
+					col = parseInt((x-20)/40)+1;
+					row = parseInt((y-20)/40)+1;
+				}
+				
+				if(isBlack){
+					ctx.drawImage(black,col*40-20,row*40-20);// 下黑子
+					isBlack=false;
+					maps[row][col]=2;  //数组中的2，代表此处存放的棋子为黑色
+					iswin(2,row,col);  //调用函数iswin，用来判断黑子是否为赢
+				}
+				else{
+					ctx.drawImage(white,col*40-20,row*40-20);//下白子
+					isBlack=true;
+					maps[row][col]=1;  //数组中的1，代表此处存放的棋子为白色
+					iswin(1,row,col);  //调用函数iswin，用来判断白子是否为赢
+				}
+				
+				//定义判断输赢的函数iswin
+				function iswin(t,row,col){
+					var originrow=row;  //后面用到row时会使其值发生变化,这里先把row的初始值保存
+					var origincol=col;
+					var total=1;        //分数
+					//水平方向上有一方棋子达到五个
+					while(col>0&&maps[row][col-1]==t){
+						total++;
+						col--;
+						 
+					}
+					row=originrow;
+					col=origincol;
+					while(col<15&&maps[row][col+1]==t){
+						col++;
+						total++;
+					}
+					if(total>=5){
+						if(t==1){
+							alert("恭喜，白子赢了！");
+						}else{
+							alert("恭喜，黑子赢了！");
+						}
+					}
+					//垂直方向上有一方棋子达到五个
+					row=originrow;
+			    	col=origincol;
+			    	total=1;
+			    	while(row>0&&maps[row-1][col]==t)
+			    	{
+			    		row--;
+			    		total++;
+			    	}
+			    	row=originrow;
+			    	col=origincol;
+			    	while(row<15&&maps[row+1][col]==t)
+			    	{
+			    		row++;
+			    		total++;
+			    	}
+			    	if(total>=5)
+			    	{
+			    		if(t==1)
+			    		alert("恭喜，白子赢了！");
+			    		else
+			    		alert("恭喜，黑子赢了！");
+			    	}
+					//左下  右上方向上有一方棋子达到五个
+			    	row=originrow;
+			    	col=origincol;
+			    	total=1;
+			    	while(row<15&&col>0&&maps[row+1][col-1]==t)
+			    	{
+			    		row++;
+			    		col--;
+			    		total++;
+			    	}
+			    	row=originrow;
+			    	col=origincol;
+			    	while(row>0&&col<15&&maps[row-1][col+1]==t)
+			    	{
+			    		row--;
+			    		col++;
+			    		total++;
+			    	}
+			    	if(total>=5)
+			    	{
+			    		if(t==1)
+			    		alert("恭喜，白子赢了！");
+			    		else
+			    		alert("恭喜，黑子赢了！");
+			    	}
+			    	//左上右下方向上有一方棋子达到五个
+			    	row=originrow;
+			    	col=origincol;
+			    	total=1;
+			    	while(row>0&&col>0&&maps[row-1][col-1]==t)
+			    	{
+			    		row--;
+			    		col--;
+			    		total++;
+			    	}
+			    	row=originrow;
+			    	col=origincol;
+			    		while(row<15&&col<15&&maps[row+1][col+1]==t)
+			    	{
+			    		row++;
+			    		col++;
+			    		total++;
+			    	}
+			    		if(total>=5)
+			    	{
+			    		if(t==1)
+			    		alert("恭喜，白子赢了！");
+			    		else
+			    		alert("恭喜，黑子赢了！");
+			    	}
+					
+					
+				}
+				
+				
+			}
+			
+		</script>
+</html>

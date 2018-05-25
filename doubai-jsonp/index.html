@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote,
+    dl, dt, dd, ol, ul, li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    input, select {
+        vertical-align:middle;
+    }
+    #top {
+        margin: 20px auto;
+    }
+    #t {
+        background: #fff;
+        width: 400px;
+        margin: 0 10px 0 10px;
+        text-align: left;
+        height: 20px;
+        padding-left: 10px;
+        outline: none;
+    }
+    #title {
+        font-weight: bold;
+        color: #614e3c;
+    }
+    #content {
+        /*border: 1px solid green;*/
+    }
+    #item {
+        /*border: 1px solid blue;*/
+        display: flex;
+        margin-top: 20px;
+    }
+    #item img {
+        width: 65px;
+        height: 82px;
+    }
+    .detail {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        /*align-items: center;*/
+        justify-content: center;
+        justify-content: space-around;
+        font-size: 14px;
+    }
+    .title {
+        color: #37a;
+        font-size: 16px;
+    }
+    .average {
+        color: #e09015;
+    }
+    #page {
+        margin: 40px 100px;
+        /*display: none;*/
+        transition: 1.0s;
+    }
+    #page a {
+        /*color: red;*/
+        cursor:pointer;
+        padding: 5px;
+    }
+    .thispage {
+        color: #fff;
+        background: #83BF73;
+    }
+</style>
+<body>
+<div style="width: 1050px;margin: 0 auto;">
+    <div id="top">
+        <span id="title">豆瓣读书</span>
+        <input type="text" id="t" placeholder="请输入图书名称">
+        <button id="btn">搜索</button>
+    </div>
+    <div id="content">
+<!--         <div id="item">
+            <img src="https://img3.doubanio.com/lpic/s8958650.jpg" />
+            <div class="detail">
+                <h3 class="title">JavaScript高级程序设计（第3版）</h3>
+                <p class="average"><span>★★★★☆</span><span class="rate">9.3</span></p>
+                <p class="autor">[美] Nicholas C. Zakas / 李松峰 / 曹力 / 人民邮电出版社 / 2012-3-29 / 99.00元</p>
+            </div>
+        </div> -->
+    </div>
+    <div id="page">
+<!--         <a class="num thispage">1</a>
+        <a class="num">2</a>
+        <a class="num">3</a>
+        <a class="num">4</a>
+        <a class="num">5</a>
+        <a class="num">6</a> -->
+    </div>
+</div>
+
+<script src="jsonp.js"></script>
+<script>
+
+    const t = document.getElementById('t')
+    const btn = document.getElementById('btn')
+    const content = document.getElementById('content')
+    const page = document.getElementById('page')
+
+    // let nowPage = 0
+    let pageNum = 0
+    let ipage = page.children
+
+    btn.addEventListener("click", function () {
+        if (t.value.trim() == ''){
+            alert("输入内容为空")
+            return
+        }
+
+        content.innerHTML = ''
+        
+        render(0)
+
+    })
+
+    function render(nowPage) {
+        content.innerHTML = ''
+        jsonp({
+            url:'https://api.douban.com/v2/book/search',
+            data:{
+                q: t.value,
+                start: nowPage * 10,
+                count: 10
+            },
+            success: function (data) {
+                console.log(data)
+
+                pageNum = Math.ceil(data.total / 10)
+
+                Array.from(data.books).forEach((el,i) => {
+
+                    let rate = "★★★★★☆☆☆☆☆".slice(5 - Math.round(el.rating.average / 2), Math.round(10 - el.rating.average / 2))
+
+                    let str = `
+                        <div id="item">
+                            <img src="${el.image}" />
+                            <div class="detail">
+                                <h3 class="title">${el.title}</h3>
+                                <p class="average"><span>${rate}</span><span class="rate">${el.rating.average}</span></p>
+                                <p class="autor">${el.author[0]} / ${el.publisher} / ${el.pubdate} / ${el.price}</p>
+                            </div>
+                        </div>
+                    `
+                    content.innerHTML += str
+
+                    showPage(nowPage)
+                })
+            },
+            cb: 'callback'
+        })
+    }
+
+    // 显示页面
+    function showPage (nowPage) {
+        if (pageNum >=6) {
+            page.innerHTML = ''
+            page.innerHTML = `
+                <a class="num" onclick="render(0)">1</a>
+                <a class="num" onclick="render(1)">2</a>
+                <a class="num" onclick="render(2)">3</a>
+                <a class="num" onclick="render(3)">4</a>
+                <a class="num" onclick="render(4)">5</a>
+                <a class="num" onclick="render(5)">6</a>
+            `
+        }else{
+            page.innerHTML = ''
+            for(let i=0; i<pageNum; i++) {
+                page.innerHTML += `<a class="num" onclick="render(${i})">${i+1}</a>`
+            }
+        }
+
+        ipage = page.children
+        for (let i=0; i<pageNum; i++) {
+            if (i == nowPage) {
+                ipage[i].style.backgroundColor = 'red'
+                ipage[i].style.color = '#fff'
+            }
+        }
+    }
+ 
+
+</script>
+</body>
+</html>

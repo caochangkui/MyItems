@@ -1,0 +1,155 @@
+﻿ 
+/*响应式设计*/
+/*---------------------------------------------------------------------------------------------------------------------------*/
+@media (min-width: 1200px){
+	
+	
+}
+/*---------------------------------------------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1199px){
+	
+	
+}
+/*---------------------------------------------------------------------------------------------------------------------------*/
+@media (max-width: 991px){
+	/*#fp-nav{       
+		display: none;           //右侧导航小圆点
+	}*/
+	#top{
+    	display: none;
+    } 
+    .secti_title{ 
+		top: 2%; 
+	} 
+    #content{  
+		height: 300px; 
+		font-size: 12px; 
+	}
+	 #content p{   
+		font-size: 12px; 
+	}
+	.title p{  
+		line-height: 12px;  
+		letter-spacing: 0.2px;
+		margin-top: -6px; 
+	}
+	/*--------------------------------时间线-----------------------------------------*/
+	#content{
+		margin-top: -60px; 
+	}
+	.section2 .unit{ 
+		padding: 10px 0; 
+		height: 100px;
+	}
+	.section2 .unit .work-left h4{
+		position: absolute;  
+		font-size: 12px;
+		line-height: 20px; 
+	    width:100px;
+	    height:20px;
+	    top: 50%;
+	}
+	.section2 .unit .work-left h4:before{ 
+	    top:3px; 
+	    border:5px solid transparent;
+	    right:-10px;
+	     border-left-color: #FFFF99;
+	}
+	.section2 .unit .work-right h4{ 
+		font-size: 12px;
+		line-height: 20px; 
+	    width:100px;
+	    height:20px;
+	    top: 50%;
+	}
+	.section2 .unit .work-right h4:before{ 
+	    top:3px; 
+	    border:5px solid transparent;
+	    left:-10px;
+	    border-right-color: #FFFF99;
+	}	
+	.section2 .unit .love-text{  
+	    width:80%;
+	    height:80px;
+	    top: 50%;  
+	    padding: 2px;  
+	}	
+	.section2 .unit .love-text h5{
+		font-size: 10px;
+		line-height: 10px; 
+}
+	.active .time_1,
+	.active .time_3,
+	.active .love-text-2,
+	.active .love-text-4{
+		right: 20px; 
+	} 
+	.active .time_2,
+	.active .time_4,
+	.active .love-text-1,
+	.active .love-text-3{
+		left: 20px; 
+	}
+	.time_1_box,
+	.time_4_box{
+		display: none;
+	}
+	/*------------------------------------------前端技能----------------------------------------*/
+	.button{  
+		height: 100px;
+		width: 80%;
+		margin: auto;
+	}
+	.button div input{ 
+		width: 70px;
+		font-size: 10px;
+	} 
+		
+	
+    /*------------------------------------------作品----------------------------------------*/
+	.allbox{
+		padding: 30px; 
+	}
+	.box {   
+		margin: 20px;
+		height: 140px;   
+	} 
+	.box .a_unit {  
+		width:100px;
+		height:100%;  
+		margin-left: -50px; 
+		font-size:12px; 
+	}
+	.box .a_unit p{ 
+		font-size: 12px;
+		margin-top: 10px;
+	}
+	.box .a_unit .box_title{ 
+		font-size: 12px; 
+		margin: 10px 0 0 0;
+	}
+	.box .a_unit .box_content,
+	.box .a_unit .box_go a{
+		font-size: 50%;
+	}
+	
+    /*------------------------------------------联系我----------------------------------------*/
+	.connected_1 h4,
+	.connected_1 a{
+		font-size: 80%;
+	}
+	.connected_2 img{  
+		width: 20px;
+		height: 20px;
+		top: 50%;
+		left: 50%;
+		margin-top: -10px;
+		margin-left: -10px; 
+	}
+	.connected_2 .touch{
+		display: none;
+	}
+	
+	
+}
+/*---------------------------------------------------------------------------------------------------------------------------*/

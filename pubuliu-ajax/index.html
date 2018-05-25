@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    	body{
+    		background:skyblue;
+    	}
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .pic{
+        width: 236px;
+        box-shadow:0 1px 3px rgba(0,0,0,.3);
+        overflow:hidden;
+        margin-top:10px;
+      }
+      img{
+        width:236px;
+        border: none;
+        display: block;
+      }
+      ul{
+        list-style: none;
+        margin: 0 auto;
+        border:1px solid #000;
+        /* overflow: hidden; */
+        /* width:1050px; */
+        position: relative;
+      }
+      li{
+        position: absolute;
+        border: 1px solid #ccc;
+        /* float: left; */
+        /* margin: 8px; */
+        width:236px;
+        transition:.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="ul">
+        <!-- <li>
+                <div class="pic">
+                    <img src="http:\/\/www.wookmark.com\/images\/original\/638518_wookmark.jpg">
+                </div>
+        </li> -->
+       
+    </ul>
+<script src="jsonp.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    const ul = document.getElementById('ul');
+    let num = 1;
+    let iw = 236;
+    let ml = 10;
+    let act = iw + ml;
+    let iW = document.documentElement.clientWidth;
+    let onOff = true;
+    let len = Math.floor(iW / act); //可视区能放几张图片
+    let loading = document.getElementById('loading');
+    ul.style.width = len * act - ml + 'px';
+
+    let arrX = [];
+    let arrY = [];
+
+    for(let i=0;i<len;i++){
+      arrX.push(i * act);
+      arrY.push(0);
+    }
+
+    //拿到最小值的索引
+    function minI(arr){
+      let index = Math.min(...arr);
+      return arr.findIndex(e=>e==index);
+    }
+
+    render(num);
+
+    function render(num){
+      jsonp({
+        url:'http://www.wookmark.com/api/json/popular',
+        data:{
+          page:num
+        },
+        success:function(data){
+          data.forEach((e,i) => {
+              let li = document.createElement('li');
+              let div = document.createElement('div');
+              div.className = 'pic';
+              let img = new Image();
+              img.src = e.preview;
+
+              img.onload = function(){
+                  let min = minI(arrY);
+                  let ih = 0;
+                  if(e.width){
+                    ih = iw/e.width * e.height;
+                  }
+                
+                  img.style.cssText = `
+                    width:${iw}px;
+                    height:${ih}px;
+                  `; 
+                  li.style.cssText = `
+                    left:${arrX[min]}px;
+                    top:${arrY[min]}px;
+                  `;
+                  div.appendChild(img);
+                  li.appendChild(div);
+                  ul.appendChild(li);
+
+                  arrY[min] += ih + 10;
+              }
+          });
+          onOff = true;
+        }
+      });
+    }
+
+    window.onscroll = function(){
+      let min = minI(arrY);
+      if(arrY[min] <= window.pageYOffset + window.innerHeight){
+        if(onOff){
+          onOff = false;
+          num = 1;
+          render(num);
+        }
+      }
+    }
+
+    window.onresize = function(){
+      iW = document.documentElement.clientWidth;
+      len = Math.floor(iW / act);
+      if(len > 7){
+         len = 7;
+      }
+      if(len < 3){
+         len = 3;
+      }
+
+      arrX.length = arrY.length = 0;
+      ul.style.width = len * act - ml + 'px';
+      for(let i=0;i<len;i++){
+        arrX.push(i * act);
+        arrY.push(0);
+      }
+
+      let lis = Array.from(document.getElementsByTagName('li'));
+
+      lis.forEach(e=>{
+        let min = minI(arrY);
+        e.style.cssText = `
+          left:${arrX[min]}px;
+          top:${arrY[min]}px;
+        `;
+        arrY[min] += e.offsetHeight + 10;
+      });
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+</script>
+</body>
+</html>

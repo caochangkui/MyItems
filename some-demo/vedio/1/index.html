@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    body {
+        background: #464B45;
+    }
+    .content {
+        color: #fff;
+        padding: 0.5rem;
+        margin-top: 0.25rem;
+    }
+    .title {
+        color: #fff;
+        font-size: 0.3rem;
+        line-height: 0.8rem;
+        display: flex;
+        margin-bottom: 0.3rem;
+    }
+    .info {
+        color: #fff;
+        font-size: 0.25rem;
+    }
+    .btn {
+        display: flex;
+        justify-content: space-around;
+    }
+    .btn button{
+        font-size: 0.25rem;
+        width: 2.2rem;
+        height: 0.75rem;
+        line-height: 0.75rem;
+        margin-top: 0.5rem;
+        background: #fff;
+    }
+    .title img {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        margin-right: 0.2rem;
+    }
+
+
+</style>
+<script type="text/javascript">
+(function (doc, win) {
+    let docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            let clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if(clientWidth>=640){
+                docEl.style.fontSize = '100px';
+            }else{
+                docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+            }
+        };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+</script>
+</head>
+<body>
+    <div>
+        <video width="100%" src="movie.mp4" controls autoplay x5-playsinline playsinline webkit-playsinline poster preload="auto"></video>
+    </div>
+
+    <div class="content">
+        <div class="title">
+            <img src="./img.png" alt="头像" >
+            <span>全民岛主</span> 
+        </div>
+        <div class="info">
+            <p>快来和TA一起互怼</p>
+            <p>当你好友买了一座海岛，你会选择...</p>
+        </div>
+        <div class="btn">
+            <button>炸了它</button>
+            <button>也买一座</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #eee;
+}
+.active{
+    background: yellow;
+}
+div{
+    margin-top: 10px;
+    width:200px;
+    height: 100px;
+    border: 1px solid #000;
+    display: none;
+}
+div.show{
+    display: block;
+}
+
+</style>
+</head>
+<body>
+    <section id="box1">
+        <input type="button" value="按钮一" class="active">
+        <input type="button" value="按钮二">
+        <input type="button" value="按钮三">
+        <div class="show">11111</div>
+        <div>22222</div>
+        <div>33333</div>        
+    </section>
+    <section id="box2">
+        <input type="button" value="按钮一" class="active">
+        <input type="button" value="按钮二">
+        <input type="button" value="按钮三">
+        <div class="show">11111</div>
+        <div>22222</div>
+        <div>33333</div>        
+    </section>
+    <section id="box3">
+        <input type="button" class="button1" value="第一个停止播放">
+        <input type="button" class="button2" value="第二个自动播放">
+        <input type="button" class="button3" value="第二个停止播放">
+        <input type="button" class="button4" value="两个一起播放">
+        <input type="button" class="button5" value="两个反向播放">
+    </section>
+
+<script>
+
+    window.onload = function(){
+
+        let t = new Tab('#box1 input','#box1 div')
+        let t2 = new Tab('#box2 input','#box2 div')
+
+        t.init()
+        t.autoPlay()
+
+        t2.init()
+
+        // 五个控制按钮
+        buttons = document.querySelectorAll('#box3 input')
+
+        buttons[0].addEventListener('click', function () {
+            t.stopPlay()
+        })
+
+        buttons[1].addEventListener('click', function () {
+            if (t2.go) {
+                t2.stopPlay()
+            }
+            t2.autoPlay()
+        })
+
+        buttons[2].addEventListener('click', function () {
+            t2.stopPlay()
+        })
+
+        buttons[3].addEventListener('click', function () {
+            if (t.go) {
+                t.stopPlay()
+            }
+            if (t2.go) {
+                t2.stopPlay()
+            }
+            t.autoPlay()
+            t2.autoPlay()
+        })
+
+        buttons[4].addEventListener('click', function () {
+            if (t.go) {
+                t.stopPlay()
+            } else {
+                t.autoPlay()
+            }
+            if (t2.go) {
+                t2.stopPlay()
+            } else {
+                t2.autoPlay()
+            }
+        })
+
+    }
+
+    function Tab (btns,divs) {
+        this.btns = Array.from(document.querySelectorAll(btns))
+        this.divs = document.querySelectorAll(divs)
+        this.nowIndex = 0 // 当前选项的索引
+        this.go = null // 是否自动播放
+    }
+
+    Tab.prototype.init = function () {
+        let _this = this
+        this.btns.forEach(function (ele,i) {
+            ele.onclick = function () {
+                _this.change(i)
+            }
+        })
+    }
+
+    // 手动播放
+    Tab.prototype.change = function (i) {
+        this.btns.forEach(function (e,i) {
+            e.className = ''
+            this.divs[i].className = ''
+        },this)
+
+        this.btns[i].className = 'active'
+        this.divs[i].className = 'show'
+    }
+
+    // 自动播放
+    Tab.prototype.autoPlay = function () {
+
+        let _this = this
+
+        _this.go = setInterval(function () {
+
+            if (_this.nowIndex == _this.btns.length-1) {
+                _this.nowIndex = 0
+            } else {
+                _this.nowIndex++
+            }
+
+            _this.btns.forEach (function(e,i) {
+                e.className = ''
+                _this.divs[i].className = ''
+            },_this)
+
+            _this.btns[_this.nowIndex].className = 'active'
+            _this.divs[_this.nowIndex].className = 'show'
+
+        }, 1000)
+
+    }
+
+    // 停止播放
+    Tab.prototype.stopPlay = function () {
+        let _this = this
+        if (_this.go) {
+            clearInterval(_this.go)
+            _this.go = null
+        }
+    }
+
+    // 第二个选项卡的继承
+    function Tab2 (id) {
+        Tab.call(this,id);
+    }
+
+    function paohui () {}
+
+    paohui.prototype = Tab.prototype;
+
+    let ph = new paohui;
+
+    Tab2.prototype = ph;
+
+</script>
+</body>
+</html>

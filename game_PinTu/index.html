@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拼图---cck</title>
+<style>
+*{ margin:0; padding:0;}
+body{background-color: #006699}
+#ul1{ width:600px; position:relative; margin:10px auto;border: 0px solid red;}
+li{ width:192px; height:192px; margin:1px; float:left; list-style:none;}
+input{
+	display:block;
+	font-size: 40px;
+	margin:20px;
+	padding:10px 20px 10px 20px;
+	border:2px solid red;
+	border-radius:25px;
+}
+</style>
+<script	src="jquery-3.1.0.min.js" type="text/javascript"></script>
+<script>
+window.onload = function(){
+	var aLi = document.getElementsByTagName('li');
+	var izIndex = 999;   //充当被拖拽元素的层级，以使其保持在最上面
+	var arr = [];
+	var oInput1 = document.getElementById('input1');
+	var oInput2 = document.getElementById('input2');
+
+	for(var i =0;i<aLi.length;i++){
+		arr.push([aLi[i].offsetLeft,aLi[i].offsetTop]);
+	}
+
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.position = 'absolute'; //布局转换
+		aLi[i].style.left = arr[i][0]+'px';
+		aLi[i].style.top = arr[i][1]+'px';
+		aLi[i].style.margin = 0;  //消除前面margin定义的10px；
+	}
+
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index = i;
+		drag(aLi[i]);
+	}
+
+	oInput1.onclick = function(){//点击按钮，图片随机换位
+		var randomArr_0 = [0,1,2,3,4,5,6,7,8];
+		var randomArr =  [0,1,2,3,4,5,6,7,8];
+		do{
+			randomArr = randomArr_0.sort(function(){
+				return Math.random()-0.5;// random()方法可返回介于 0~1之间的一个随机数
+			});
+		}while(randomArr[0]==0 || randomArr[1]==1 || randomArr[2]==2 || randomArr[3]==3 || randomArr[4]==4 || randomArr[5]==5 || randomArr[6]==6 || randomArr[7]==7 || randomArr[8]==8 );
+
+		for(var i=0;i<aLi.length;i++){
+			$(aLi[i]).animate({
+				left : arr[randomArr[i]][0]+'px',
+				top : arr[randomArr[i]][1]+'px'
+			},"slow");
+			aLi[i].index = randomArr[i];
+		};
+	};
+	oInput2.onclick = function(){//点击按钮，图片随机换位
+		var randomArr = [0,1,2,3,4,5,6,7,8];
+		 
+
+		for(var i=0;i<aLi.length;i++){
+			$(aLi[i]).animate({
+				left : arr[randomArr[i]][0]+'px',
+				top : arr[randomArr[i]][1]+'px'
+			},"slow");
+			aLi[i].index = randomArr[i];
+		};
+	};
+
+
+	function drag(obj){ //封装拖拽事件
+		var disX = 0;
+		var disY = 0;
+		obj.ontouchstart = function(ev){
+			obj.style.zIndex = izIndex++;//使被拖拽元素永远保持在最上面
+			disX = ev.touches[0].clientX - obj.offsetLeft;
+			disY = ev.touches[0].clientY - obj.offsetTop;
+
+			document.ontouchmove = function(ev){
+				obj.style.left = ev.touches[0].clientX -disX +'px';
+				obj.style.top = ev.touches[0].clientY -disY +'px';
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.border = '';
+				}
+				var nL = nearLi(obj);//找到距离被拖拽元素最近的元素
+				if(nL){  //为防止没有最近的元素而出现报错，这里先做个判断
+					nL.style.border = '5px solid red';
+				}
+				document.addEventListener("touchmove",function(){
+	                event.preventDefault();
+	            },false);
+			};
+
+			document.ontouchend= function(){
+				document.ontouchmove = null;// 清楚文档鼠标按下起来后的事件执行。
+				document.ontouchend = null;
+
+				var nL = nearLi(obj);
+				var tem = 0;
+
+				if(nL){
+					$(nL).animate({
+						left : arr[obj.index][0]+'px',
+						top : arr[obj.index][1]+'px'
+					});
+					$(obj).animate({
+						left : arr[nL.index][0]+'px',
+						top : arr[nL.index][1]+'px'
+					});
+					nL.style.border = '';
+
+					tmp = obj.index;
+					obj.index = nL.index;
+					nL.index = tmp;
+				}else{
+					$(obj).animate({
+						left : arr[obj.index][0]+'px',
+						top : arr[obj.index][1]+'px'
+					});
+				}
+			};
+ 			return false;
+		}
+	}
+
+	function nearLi(obj){//封装一个函数，找到距离被拖拽元素最近的元素
+		var value = 9999;
+		var index = -1;
+
+		for(var i=0;i<aLi.length;i++){
+			if(pz(obj,aLi[i]) && obj != aLi[i]){//找到与被拖拽元素相碰撞的元素
+				var c = juli(obj,aLi[i]);//计算被拖拽元素与相碰撞元素的距离
+				if(c < value){
+					value = c; //找到最小距离
+					index = i;//找到处于最小距离的那个相碰撞的元素
+				}
+			}
+		}
+		if(index != -1){
+			return aLi[index];
+		}else{
+			return false;
+		}
+	}
+
+	function juli(obj1,obj2){//封装一个函数，计算勾股定理
+		var a = obj1.offsetLeft - obj2.offsetLeft;
+		var b = obj1.offsetTop - obj2.offsetTop;
+		return Math.sqrt(a*a+b*b);
+
+	}
+
+	function pz(obj1,obj2){//封装碰撞检测的函数，检测两个元素是否碰撞
+		var L1 = obj1.offsetLeft;  //第一个物体的左边距
+		var R1 = obj1.offsetLeft+obj1.offsetWidth;//第一个物体的右边距
+		var T1 = obj1.offsetTop;   //第一个物体的上边距
+		var B1 = obj1.offsetTop+obj1.offsetHeight;//第一个物体的下边距
+
+		var L2 = obj2.offsetLeft;
+		var R2 = obj2.offsetLeft + obj2.offsetWidth;
+		var T2 = obj2.offsetTop;
+		var B2 = obj2.offsetTop + obj2.offsetHeight;
+
+		if(R1<L2 || L1>R2 || T1>B2 || B1<T2){
+			return false;  //两个元素没有碰撞到
+		}else{
+			return true;
+		}
+	}
+}
+
+</script>
+</head>
+
+<body>
+<div class="tips">
+	<input type="button" value="开始游戏" id="input1">
+	<input type="button" value="一键还原" id="input2">
+</div>
+<ul id="ul1">
+	<li><img src=" photo/1.jpg" /></li>
+    <li><img src=" photo/2.jpg" /></li>
+    <li><img src=" photo/3.jpg" /></li>
+    <li><img src=" photo/4.jpg" /></li>
+    <li><img src=" photo/5.jpg" /></li>
+    <li><img src=" photo/6.jpg" /></li>
+    <li><img src=" photo/7.jpg" /></li>
+    <li><img src=" photo/8.jpg" /></li>
+    <li><img src=" photo/9.jpg" /></li>
+</ul>
+</body>
+</html>

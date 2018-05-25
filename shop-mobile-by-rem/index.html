@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript">
+ (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<style type="text/css">
+body {
+	font-family: Helvetica;
+}	
+body * {
+	font-size: .25rem;
+	-webkit-text-size-adjust: 100%;
+}
+input,
+button,
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+body,
+h1 {
+	margin: 0;
+}
+a {
+	text-decoration: none;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body {
+	background: #f8f8f8;
+}
+.icons {
+	position: relative;
+}
+.icons::after {
+	content: "";
+	position: absolute;
+	background: url(img/icons.png) no-repeat;
+	background-size: 1.06rem .77rem;
+}
+.header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	height: .88rem;
+	background: #ef3239;
+	text-align: center;
+}
+.menuBtn,
+.refresh {
+	position: absolute;
+	top: 0;
+	width: 1rem;
+	height: 0;
+	padding-top: .88rem;
+	overflow: hidden;
+}
+.menuBtn {
+	left: 0;
+}
+.menuBtn::after {
+	top: .27rem;
+	left: .36rem;
+	width: .31rem;
+	height: .23rem;
+}
+.refresh {
+	right: 0;
+}
+.refresh::after {
+	top: .22rem;
+	left: .38rem;
+	width: .27rem;
+	height: .3rem;
+	background-position: -.76rem 0;
+}
+.title {
+	display: inline-block;
+	padding-left: .34rem;
+	vertical-align: top;
+	font-size: .34rem;
+	line-height: .74rem;
+	font-weight: normal;
+	color: #fff;
+}
+.title::after {
+	left: 0;
+	top: .27rem;
+	width: .17rem;
+	height: .22rem;
+	background-position: -.44rem 0;
+}
+.nav {
+	margin-top: .88rem;
+	border-top: 1px solid #b2b2b2;
+	height: .88rem;
+	border-bottom: 1px solid #ccc;
+	background: -webkit-linear-gradient(0deg,#f8f8f8,#fff);
+	background: linear-gradient(0deg,#f8f8f8,#fff);
+}
+.nav a {
+	float: left;
+	width: 25%;
+	font-size: .3rem;
+	text-align: center;
+	color: #848689;
+	line-height: .88rem;
+}
+.nav a:after {
+	position: static;
+	display: inline-block;
+	vertical-align: middle;
+}
+/*
+	:nth-of-type 
+	父级下的第几个这种类型元素
+*/
+.nav a:nth-of-type(1) {
+	color: #f23838;
+}
+.nav a:nth-of-type(1)::after {
+	margin-left: .1rem;
+	width: .31rem;
+	height: .18rem;
+	background-position: -.75rem -.54rem;
+}
+.nav a:nth-of-type(3)::after {
+	margin-left: .1rem;
+	width: .14rem;
+	height: .20rem;
+	background-position: -.47rem -.52rem;
+}
+.nav a:nth-of-type(4)::after {
+	vertical-align: text-top;
+	margin-left: .09rem;
+	width: .31rem;
+	height: .31rem;
+	background-position: 0 -.46rem;
+}
+.list li {
+	overflow: hidden;
+	padding: .2rem;
+	border-bottom: 1px solid #ccc;
+}
+.list img {
+	float: left;
+	width: 2rem;
+	height: 2rem;
+}
+.list .text {
+	float: right;
+	width: 3.66rem;
+}
+.list strong {
+	display: block;
+	font-weight: normal;
+	font-size: .24rem;
+	color: #333;
+	line-height: .38rem;
+}
+.list .price {
+	display: block;
+	margin-top: .38rem;
+	font-size: .33rem;
+	line-height: 1;
+	color: #f23838;
+}
+.list .comment {
+	display: block;
+	margin-top: .18rem;
+	font-size: .24rem;
+	color: #808080;
+}
+</style>
+</head>
+<body>
+<header class="header">
+	<a href="#" class="menuBtn icons">菜单</a>
+	<h1 class="title icons">miaov</h1>
+	<a href="#" class="refresh icons">刷新</a>
+</header>	
+<nav class="nav">
+	<a href="#" class="icons">综合</a>
+	<a href="#">销量</a>
+	<a href="#" class="icons">价格</a>
+	<a href="#" class="icons">筛选</a>
+</nav>
+<ul class="list">
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			<img src="img/img.png">
+			<span class="text">
+				<strong>苹果（Apple）iPhone 6(A1586) 16GB 金色 移动联通电信4G手机</strong>
+				<span class="price">￥4888.00</span>
+				<span class="comment">好评96% 59091人</span>
+			</span>
+		</a>
+	</li>
+</ul>
+</body>
+</html>

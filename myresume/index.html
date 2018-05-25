@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>个人简历--曹昌魁</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> 
+<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css"/> 
+<link rel="stylesheet" type="text/css" href="css/index.css"/> 
+<link rel="stylesheet" type="text/css" href="css/index_media.css"/> 
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script> 
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script> 
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script> 
+<script src="js/jquery.easings.min.js" type="text/javascript" charset="utf-8"></script> 
+<script src="js/jquery.fullPage.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/addLoadEvent.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/func.js" type="text/javascript" charset="utf-8"></script> 
+</head>
+<body>
+<div>
+	<div id="top">
+		<img src="images/logo.jpg" width="60" height="60" alt="logo"/>
+		<span id="mytime"></span> 
+		<ul id="fullpageMenu"><!--ul导航栏按钮data-menuanchor为加载的页面page-->
+			<li data-menuanchor = "page1" class="active"><a href="#page1">首页</a></li> 
+			<li data-menuanchor = "page2"><a href="#page2">学习路线</a></li> 
+			<li data-menuanchor = "page3"><a href="#page3">前端技能</a></li> 
+			<li data-menuanchor = "page4"><a href="#page4">我的作品</a></li> 
+			<li data-menuanchor = "page5"><a href="#page5">请联系我</a></li> 
+		</ul> 	
+	</div>
+	<div class="gotop">
+		<a href="javascript:void(0)" class="gotop_weixin" title="">
+			<div class="weixin-con">     
+				<p class="weixin-title">我的微信</p>    
+				<div class="weixin-pic"> 
+					<img src="images/weixin.png" alt="微信账号" height="100" width="100" /> 
+				</div>  
+			</div>
+		</a>
+		<a href="#page1" class="gotop_go" title=""></a>
+	</div>
+</div>
+
+<div id="fullpage"><!--div为容器，这里要用id名为fullpage-->
+	<div class="section section1"><!--默认的上下滚动页面，类名可改sectionSelector:".section"，不改默认类名要为section-->
+		<div class="touxiang"></div>
+		<h2 class="name">曹昌魁</h2>
+		<div class="age"><p>年龄：26岁</p></div>
+		<div class="myemail"><p>E-mail：cckuiwy@163.com</p></div> 
+		<div class="tel"><p>TEL：18317000957</p></div>
+		<div class="godown">
+			<img src="images/arow-2.png" />
+		</div>
+	</div> 
+	<div class="section section2">
+		<h3 class="secti_title" >学习路线<span class="line"> </span></h3>
+		<div id="content" class="container">
+			<div class="unit "> 
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-left"  > 
+					<span class="time_1_box"> </span><h4 class="time_1">2016.3-2016.4</h4>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-right"   > 
+					<div class="love-text love-text-1">
+						<h5>1. HTML<br />2. CSS <br />3. DIV+CSS布局</h5> 
+					</div>
+				</div> 
+				<div class="clearfix"> </div>   <!--清除浮动-->
+				<div class="smile"></div>
+			</div>
+			<div class="unit"> 
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-left"  > 
+					<div class="love-text love-text-2">
+						<h5>1. JavaScript高级程序设计<br />2. JavaScript DOM编程艺术<br />3. 锋利的jQuery<br />4. 北风网js视频教程</h5> 
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-right"   > 
+					<h4 class="time_2">2016.4-2016.8</h4>
+				</div> 
+				<div class="clearfix"> </div>
+				<div class="smile"></div>
+			</div>	
+			<div class="unit"> 
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-left"  > 
+					<h4 class="time_3">2016.8-2016.11</h4>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-right"   > 
+					<div class="love-text love-text-3">
+						<h5>1. Bootstrap <br />2. jQuery UI</h5> 
+					</div>
+				</div> 
+				<div class="clearfix"> </div>
+				<div class="smile"></div>
+			</div>
+			<div class="unit"> 
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-left"   > 
+					<div class="love-text love-text-4">
+						<h5>1. Node.js<br />2. AngularJS <br />3. PHP和Mysql</h5> 
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 work-right"   > 
+					<h4 class="time_4">2016.11-至今</h4><span class="time_4_box"> </span>
+				</div> 
+				<div class="clearfix"> </div>
+				<div class="smile"></div>
+			</div>	 
+		</div>
+		<div class="godown">
+			<img src="images/arow-2.png" />
+		</div>
+	</div> 
+	<div class="section section3" id="section3"> 
+		<h3 class="secti_title" >前端技能<span class="line"> </span></h3>
+		<div class="map-show">
+			<ul id="map-ul">
+				<li style="background-color: royalblue;"><img src="images/html.png"/> <span><p>掌握HTML和CSS样式表，能够熟练使用DIV+CSS实现任何网站的静态布局，注重优化代码并保持良好的兼容性；<br/>熟悉HTML5与CSS3中的新特性，可以使用CSS3实现各种2D、3D转换的动画特效</p></span></li>
+				<li style="background-color: blue;"><img src="images/jq.png"/><span><p>熟练使用jQuery，增加用户交互体验，可实现轮播图、下拉菜单、无缝滚动、选项卡等动画效果。</p></span></li> 
+				<li style="background-color: gray;"><img src="images/bt.png"/><span><p>掌握Bootstrap框架的应用，实现网页特效和用户交互体验，设计中注重响应式布局</p></span></li>
+				<li style="background-color: blueviolet;"><img src="images/node.png"/><span><p>正在进行Node.js的学习，了解Node.js事件驱动编程</p></span></li>
+				<li style="background-color: red;"><img src="images/php.jpg"/><span class="span_ajax"><p>了解服务端语言PHP，可用PHP操作Mysql进行增删改查</p></span></li>
+				<li style="background-color: yellow;"><img src="images/js.png"/><span><p>熟悉JavaScript、Ajax、JSON、DOM等前端技术，能用原生JS操作DOM实现基本动态效果及事件绑定，对闭包、作用域、JS面向对象编程的思想有一定的了解</p></span></li>
+			</ul>
+		</div>
+		<div class="button">
+			<div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button1 btn btn-primary"  value="CSS3">
+			</div>
+		   <div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button2 btn btn-primary"  value="Javascript">
+			</div>
+			<div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button3 btn btn-primary"  value="jQuery"> 
+			</div>
+			<div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button4 btn btn-primary"  value="Bootstrap">
+			</div>
+			<div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button5 btn btn-primary"  value="Node.js">
+			</div>
+			<div class="ol-lg-2 col-md-2 col-sm-4 col-xs-4">
+				<input type="button" class="button6 btn btn-primary"  value="PHP">
+			</div> 
+		</div>
+		<div class="">
+			<p style="color: #fff;">（提示：鼠标滑过六面体可查看详情）</p>
+		</div>
+		<div class="godown">
+			<img src="images/arow-2.png" />
+		</div>
+	</div> 
+	<div class="section section4"> 
+		<h3 class="secti_title" >我的作品<span class="line"> </span></h3>
+		<div class="container allbox">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" style=" ">
+					<div class="  box box_1">
+						<div href="#" id="one" class="a_unit"></div>
+				        <div href="#" id="two" class="a_unit">
+				        	<p class="box_title">企业官网</p>
+				        	<p class="box_content">参考某企业官网，使用DIV+CSS完成页面构建，达到更好的展示效果;<br/>掌握DIV+CSS技术，熟练掌握firebug，chrome等调试工具调试代码。<br/>点击进入页面</p> 
+				        	<p class="box_go"><a href="https://github.com/caochangkui/SSSRI-xin" target="_blank">源代码</a><a href="https://caochangkui.github.io/sssrifromcck/sssri--new.html" target="_blank">Demo</a></p>
+				        </div>
+					</div> 
+			    </div> 
+			    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+			    	<div class="box box_2">
+				    	<div href="#" id="one" class="a_unit"></div>
+				        <div href="#" id="two" class="a_unit">
+				        	<p class="box_title">毕业生就业网</p>
+				        	<p class="box_content">仿照上海学生就业创业服务网，完成页面重构;<br/>使用jQuery完成页面动态效果部分，部分效果采用css3新特性实现;<br/>使用JS和JQ实现轮播图、下拉菜单、无缝滚动、选项卡等效果。</p>
+				        	<p class="box_go"><a href="https://github.com/caochangkui/firstjobnew" target="_blank">源代码</a><a href="https://caochangkui.github.io/firstjob/" target="_blank">Demo</a></p>
+				        </div>	
+			    	</div> 
+			    </div>
+			    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ">
+			    	<div class="box box_3">
+			    		<div href="#" id="one" class="a_unit"></div>
+				        <div href="#" id="two" class="a_unit">
+				        	<p class="box_title">五子棋小游戏</p>
+				        	<p class="box_content">采用HTML5的canvas标签完成棋盘绘制，并用采用原生js技术定义下棋规则及输赢判断;<br/>使用JS定义函数，操作DOM，对闭包、作用域的思想有一定的了解。</p>
+				        	<p class="box_go"><a href="https://github.com/caochangkui/wuziqi" target="_blank">源代码</a><a href="https://caochangkui.github.io/wuziqi/" target="_blank">Demo</a></p>
+				        </div>
+			    	</div> 
+			    </div>
+			    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+			    	<div class=" box box_4">
+			    		<div href="#" id="one" class="a_unit"></div>
+				        <div href="#" id="two" class="a_unit">
+				        	<p class="box_title">其他</p>
+				        	<p class="box_content">掌握CSS3标准，能实现各种常见的动画效果，并解决常见兼容性问题；<br/>对Bootstrap的网格系统、响应式设计有了更加深入的理解。</p> 
+				        	<p class="box_go"><a href="https://github.com/caochangkui" target="_blank">源代码</a></p>
+				        </div>
+			    	</div> 
+			    </div>
+			</div>
+		    
+		</div>
+		<div class="godown" >
+			<img src="images/arow-2.png" />
+		</div>
+	</div> 
+	<div class="section section5"> 
+		<h3 class="secti_title secti_title_5" >请联系我<span class="line"> </span></h3>
+		<div class="senction5_content">
+			<div class="connected_1">
+				<h4 class="myword myword_1"></h4>
+				<h4 class="myword myword_3">能坦然面对工作中的压力和挑战。</h4>
+				<h4 class="myword myword_3">热爱WEB前端，享受前端设计带来的成就感。</h4>
+				<div class="download">
+					<a href="images/resume.pdf" target="_blank" class="resume">Word版简历下载</a>
+				</div>
+				<!--地图-->
+				<!--<div class="map">
+					<img src="images/map.png" id="ditu" class="img-responsive"/> 
+				</div> -->
+				<!--<div class="tel">
+					<div class="yourmessage">
+						<h3>请留言</h3>
+						<form method="post" action="submit.html">
+						  <fieldset style="border: none">
+						    <p>
+						     <label for="name">姓名:</label>
+						     <input type="text" id="name" name="name" placeholder="Your name" required="required" />
+						    </p>
+						    <p>
+						     <label for="email">Email:</label>
+						     <input type="email" id="email" name="email" placeholder="Your email address" required="required" />
+						    </p>
+						    <p>
+						     <label for="message">留言:</label>
+						     <textarea cols="" rows="4" id="message" name="message" required="required" placeholder="Write your message here."></textarea>
+						    </p>
+						    <input type="submit" value="发送" />
+						   </fieldset>
+						</form>
+					</div> 
+				</div>-->
+				
+			</div>
+			<div class="connected_2">
+				<div class="none">
+				</div>
+				<div class="connected_2_unit github">
+					<a href="https://github.com/caochangkui"  target="_blank" ><img src="images/github.jpg" /></a> 
+					<a href="https://github.com/caochangkui"  target="_blank" class="touch">Github</a> 
+				</div>
+				<div class="connected_2_unit email">
+					<a href="mailto:ppitfor@gmail.com"  target="_blank"><img src="images/email.jpg" /></a> 
+					<a href="mailto:ppitfor@gmail.com"  target="_blank" class="touch">邮箱 </a> 
+				</div>
+				<div class="connected_2_unit zhihu">
+					<a href="https://www.zhihu.com/people/caochangkui/activities"  target="_blank"><img src="images/zhihu.jpg" /></a> 
+					<a href="https://www.zhihu.com/people/caochangkui/activities"  target="_blank" class="touch">知乎</a>
+				</div>
+				<div class="connected_2_unit boke">
+					<a href="http://blog.csdn.net/u010728662"  target="_blank"><img src="images/boke.jpg" /></a>
+					<a href="http://blog.csdn.net/u010728662"  target="_blank" class="touch">博客</a>
+				</div>
+				<div class="connected_2_unit youdao">
+					<a href="http://note.youdao.com/noteshare?id=9392a8601d5698985d54019dd2fe868f" target="_blank"><img src="images/youdao.jpg" /></a>
+					<a href="http://note.youdao.com/noteshare?id=9392a8601d5698985d54019dd2fe868f" target="_blank" class="touch">有道笔记</a>
+				</div>
+				<div class="none">
+				</div>
+			</div>
+		</div> 
+		<div id="footer">
+			<p>Created by <span style="font-style: italic;">CaoChangkui</span></p>
+			<p class="copyright"><span>版权所有</span> <span>cckuiwy@163.com</span> Copyright @ 2017 - 2018</p>
+		</div>
+	</div> 
+	
+</div> 
+</body>
+</html>

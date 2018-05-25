@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无缝滚动-两个demo实现</title>
+<style type="text/css">
+    #demo {
+     background: #FFF;
+      overflow:hidden; 
+     width:1200px;
+	 height:350px;
+	 margin:0 auto;
+    }
+    #demo img {
+     border: 8px solid #F2F2F2;
+    }
+	
+    #indemo {
+     float: left;
+     width: 8000%;
+    }
+    #demo1 {
+     float: left;
+    }
+    #demo2 {
+     float: left;
+    }
+	.demo_unit {
+     float: left;
+    }
+	.demo_a{
+	 line-height:20px;
+	 display:block;
+	 text-align:center;
+	}
+	style=""
+	<!-- /*媒体查询，参考部分Bootstrap 框架*/ -->
+<!-- /*当页面大于1200px 时，大屏幕，主要是PC 端*/ -->
+@media (min-width: 1200px) {
+	img {
+		width: 100%;
+		height:100%;
+	}
+}
+<!-- /*在992 和1199 像素之间的屏幕里，中等屏幕，分辨率低的PC*/ -->
+@media (min-width: 992px) and (max-width: 1199px) {
+	img {
+		width: 90%;
+		height:90%;
+	}
+
+}
+<!-- /*在768 和991 像素之间的屏幕里，小屏幕，主要是PAD*/ -->
+@media (min-width: 768px) and (max-width: 991px) {
+	img {
+		width: 80%;
+		height:80%;
+	}
+	
+}
+<!-- /*在480 和767 像素之间的屏幕里，超小屏幕，主要是手机*/ -->
+@media (min-width: 480px) and (max-width: 767px) {
+	img {
+		width: 60%;
+		height:60%;
+	}
+	
+}
+<!-- /*在小于480 像素的屏幕，微小屏幕，更低分辨率的手机*/ -->
+@media (max-width: 479px) {
+	
+	img {
+		width: 40%;
+		height:40%;
+	}
+}
+
+</style>
+</head>
+<body>
+    <div id="demo">
+		<div id="indemo">
+			<div id="demo1">
+				<div class="demo_unit" style="valign:middle;align:center; ">
+					<a href="#"><img src="http://p3.qhimg.com/t01f6b07748f7efb8c1.png" border="0" /></a>
+					<a class="demo_a"  href="#">jQuery1</a>
+				</div>
+				<div class="demo_unit" style="valign:middle;align:center; ">
+					<a href="#"><img src="http://p3.qhimg.com/t01f6b07748f7efb8c1.png" border="0" /></a>
+					<a class="demo_a" style="line-height:20px;display:block;text-align:center;" href="#">jQuery2</a>
+				</div>
+				<div class="demo_unit" style="valign:middle;align:center; ">
+					<a href="#"><img src="http://p3.qhimg.com/t01f6b07748f7efb8c1.png" border="0" /></a>
+					<a class="demo_a" style="line-height:20px;display:block;text-align:center;" href="#">jQuery3</a>
+				</div>
+				<div class="demo_unit" style="valign:middle;align:center; ">
+					<a href="#"><img src="http://p3.qhimg.com/t01f6b07748f7efb8c1.png" border="0" /></a>
+					<a class="demo_a" style="line-height:20px;display:block;text-align:center;" href="#">jQuery4</a>
+				</div>
+				<div class="demo_unit" style="valign:middle;align:center; ">
+					<a href="#"><img src="http://p3.qhimg.com/t01f6b07748f7efb8c1.png" border="0" /></a>
+					<a class="demo_a" style="line-height:20px;display:block;text-align:center;" href="#">jQuery5</a>
+				</div>
+			</div>
+			<div id="demo2"></div>
+		</div>
+    </div>
+	<br />
+
+<script type="text/javascript">
+<!-- 用JS判断浏览器当前的模式： -->
+document.write(document.compatMode == "CSS1Compat" ? "当前处于标准模式" : "当前处于混杂模式");
+
+    var speed=10; //数字越大速度越慢
+    var tab=document.getElementById("demo");
+    var tab1=document.getElementById("demo1");
+    var tab2=document.getElementById("demo2");
+    tab2.innerHTML=tab1.innerHTML;
+	<!-- alert(tab2.offsetWidth); -->
+    function Marquee(){
+		if(tab.scrollLeft>= tab1.offsetWidth){
+			tab.scrollLeft=0;  //js中offsetWidth是指对象自身的宽度，整型，单位像素（含边线，如滚动条的占用的宽，值会随着内容的输入而不断改变）。
+			                                                 // scrollLeft 代表页面利用滚动条滚动到右侧时，隐藏在滚动条左侧的页面的宽度
+		}
+		else{
+			tab.scrollLeft++;
+		}
+    }
+    var MyMar=window.setInterval(Marquee,speed);
+    tab.onmouseover=function(){
+		window.clearInterval(MyMar)
+	};
+    tab.onmouseout=function(){
+		MyMar=window.setInterval(Marquee,speed)
+	};
+</script>
+</body>
+</html>
+ 

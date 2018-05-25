@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>旋转六面体--cck</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=2.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+html, body{
+  margin: 0;
+  padding: 0;
+}
+.section{
+    padding: 0px; 
+    height: auto;
+    /*border: 1px solid red;*/
+    position: relative;
+}
+.map-show{
+    /*border: 1px solid blue;*/
+    padding: 60px;
+}
+.button{
+    /*border: 1px solid yellow;*/
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button input{
+    margin: 0 2px;
+}
+.map-show ul{
+    padding: 0;
+    width: 200px; 
+    height: 200px; 
+    margin: 30px auto;
+    position: relative; 
+    transform-style: preserve-3d ;
+    transform:rotateX(0deg)  rotateY(0deg);
+}
+.map-show ul li{
+    list-style: none;
+    cursor: pointer;
+}
+/*绕中心旋转，坐标轴会随旋转而旋转*/
+.map-show li{
+    width:200px;
+    height:200px;
+    position:absolute;
+} 
+/*构造六个面  :nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。*/
+.map-show li:nth-child(1){   
+    -webkit-transform:rotateX(90deg)  translateZ(100px);
+    -moz-transform:rotateX(90deg)  translateZ(100px);
+    -ms-transform:rotateX(90deg)  translateZ(100px);
+}
+.map-show li:nth-child(2){
+    -webkit-transform:rotateX(270deg) translateZ(100px);
+    -moz-transform:rotateX(270deg)  translateZ(100px);
+    -ms-transform:rotateX(270deg)  translateZ(100px);
+}
+.map-show li:nth-child(3){
+    -webkit-transform:rotateY(90deg) translateZ(100px);
+    -moz-transform:rotateY(90deg)  translateZ(100px);
+    -ms-transform:rotateY(90deg)  translateZ(100px);
+}
+.map-show li:nth-child(4){
+    -webkit-transform:rotateY(270deg) translateZ(100px);
+    -moz-transform:rotateY(270deg)  translateZ(100px);
+    -ms-transform:rotateY(270deg)  translateZ(100px);
+}
+.map-show li:nth-child(5){
+    -webkit-transform:translateZ(-100px);
+    -moz-transform:translateZ(-100px);
+    -ms-transform:translateZ(-100px);
+}
+.map-show li:nth-child(6){
+    -webkit-transform: translateZ(100px) ;
+    -moz-transform: translateZ(100px) ;
+    -ms-transform: translateZ(100px) ;
+}
+</style>
+</head>
+<body>
+<div class="section" id="section"> 
+    <div class="map-show">
+        <ul id="map-ul">
+            <li style="background-color: royalblue;"></li>
+            <li style="background-color: blue;"></li> 
+            <li style="background-color: gray;"></li>
+            <li style="background-color: blueviolet;"></li>
+            <li style="background-color: red;"></li>
+            <li style="background-color: yellow;"></li>
+        </ul>
+    </div>
+    <div class="button">
+        <input type="button" value="1">
+        <input type="button" value="2">
+        <input type="button" value="3"> 
+        <input type="button" value="4">
+        <input type="button" value="5">
+        <input type="button" value="6">
+    </div>
+</div> 
+<script>
+  function imageRotate() {
+    var ul = document.getElementById('map-ul');
+    var inputs = document.getElementsByTagName('input');
+    var section = document.getElementById("section");
+    inputs[0].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateX(270deg)';
+        ul.style.oTransform = 'rotateX(270deg)';
+        ul.style.Transform = 'rotateX(270deg)';
+    };
+    inputs[1].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateX(360deg)';
+        ul.style.oTransform = 'rotateX(360deg)';
+        ul.style.Transform = 'rotateX(360deg)';
+    };
+    inputs[2].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateX(90deg)';
+        ul.style.oTransform = 'rotateX(90deg)';
+        ul.style.Transform = 'rotateX(90deg)';
+    };
+    inputs[3].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateY(-90deg)';
+        ul.style.oTransform = 'rotateY(-90deg)';
+        ul.style.Transform = 'rotateY(-90deg)';
+    };
+    inputs[4].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateY(90deg)';
+        ul.style.oTransform = 'rotateY(90deg)';
+        ul.style.Transform = 'rotateY(90deg)';
+    };
+    inputs[5].onclick = function(){
+        ul.style.webkitTransition = '-webkit-transform 1s linear';
+        ul.style.oTransition = '-o-transform 1s linear';
+        ul.style.transition = 'transform 1s linear';
+        ul.style.webkitTransform = 'rotateX(180deg)';
+        ul.style.oTransform = 'rotateY(-90deg)';
+        ul.style.Transform = 'rotateY(-90deg)';
+    };
+  };
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
+
+addLoadEvent(imageRotate);
+</script>
+  
+
+</body>
+</html>
