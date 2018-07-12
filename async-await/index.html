@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async await</title>
+</head>
+
+<body>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        /*
+         * 通常 使用 ajax 请求数据时，会
+         * $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (res) {
+                    console.log(res) // 请求成功，则得到结果res
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            })
+
+            得到我们想要的结果 res
+
+            但是 当得到的 数据res 需要用于另一个 ajax 请求时，则需要如下写法：
+
+            $.ajax({
+                url: 'data1.json',
+                type: 'GET',
+                success: function (res) {
+                    $.ajax({
+                        url: res.url, // 将 第一个ajax请求成功得到的res 用于第二个ajax请求
+                        type: 'GET',
+                        success: function (res) {
+                            $.ajax({
+                                url: res.url,  // 将 第二个ajax请求成功得到的res 用于第三个ajax请求
+                                type: 'GET',
+                                success: function (res) {
+                                    console.log(res)
+                                },
+                                error: function(err) {
+                                    console.log(err)
+                                }
+                            })
+                        },
+                        error: function(err) {
+                            console.log(err)
+                        }
+                    })
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            })
+         */
+
+
+
+        /* function ajaxGet (url) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (res) {
+                        resolve(res);
+                    },
+                    error: function(err) {
+                        reject('请求失败');
+                    }
+                })
+            })
+        };
+
+        ajaxGet('data1.json').then((d) => {
+            console.log(d);
+            return ajaxGet(d.url);
+        }).then((d) => {
+            console.log(d);
+            return ajaxGet(d.url);
+        }).then((d) => {
+            console.log(d);
+        }) */
+
+
+
+
+        /*
+         * 使用 async await 请求
+         */
+        function ajaxGet (url) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: url111,
+                    type: 'GET',
+                    success: function (res) {
+                        resolve(res)
+                    },
+                    error: function(err) {
+                        reject('请求失败')
+                    }
+                })
+            })
+        };
+
+
+        async function getDate() {
+            console.log('开始')
+            try {
+                let result1 = await ajaxGet('dat.json');
+                let result2 = await ajaxGet(result1.url);
+                let result3 = await ajaxGet(result2.url);
+                console.log('result1 ---> ', result1);
+                console.log('result2 ---> ', result2);
+                console.log('result3 ---> ', result3);
+
+            } catch(err) {
+                console.log(err)
+            }
+        };
+
+        getDate();  // 需要执行异步函数
+
+    </script>
+</body>
+
+</html>
+
